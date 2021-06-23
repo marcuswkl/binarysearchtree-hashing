@@ -1,5 +1,6 @@
 package binarysearchtree;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class BSTMenu {
@@ -17,7 +18,7 @@ public class BSTMenu {
         return keyboardInput.nextInt();
     }
 
-    public void performOperation(int intInput) {
+    public void performOperation(int intInput, ArrayList<Integer> bst) {
         switch (intInput) {
             case 0:
                 System.exit(0);
