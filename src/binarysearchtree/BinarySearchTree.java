@@ -5,5 +5,6 @@ public class BinarySearchTree {
         BSTMenu bstMenu = new BSTMenu();
         bstMenu.printMainMenu();
         int selectedOperation = bstMenu.getIntInput();
+        bstMenu.performOperation(selectedOperation);
     }
 }

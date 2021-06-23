@@ -17,4 +17,20 @@ public class BSTMenu {
         return keyboardInput.nextInt();
     }
 
+    public void performOperation(int intInput) {
+        switch (intInput) {
+            case 0:
+                System.exit(0);
+                break;
+            case 1:
+                System.out.println("Call insertion method");
+                break;
+            case 2:
+                System.out.println("Call deletion method");
+                break;
+            case 3:
+                System.out.println("Call traversal method");
+        }
+    }
+
 }
