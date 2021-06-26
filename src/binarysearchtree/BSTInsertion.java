@@ -1,5 +1,6 @@
 package binarysearchtree;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class BSTInsertion {
@@ -18,6 +19,14 @@ public class BSTInsertion {
             intArray[i] = Integer.parseInt(stringArray[i]);
         }
         return intArray;
+    }
+
+    public void insert(ArrayList<Integer> bst) {
+        printInsertMenu();
+        int[] insertionInput = getInsertionInput();
+        for (int insertionInputElement : insertionInput) {
+            bst.add(insertionInputElement);
+        }
     }
 
 }
