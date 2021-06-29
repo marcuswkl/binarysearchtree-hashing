@@ -30,7 +30,7 @@ public class BinarySearchTree {
     public static void performOperation(int intInput, BSTTree bst) {
         BSTInsertion bstInsertion = new BSTInsertion();
         BSTDeletion bstDeletion = new BSTDeletion();
-        BSTTraversal BSTTraversal = new BSTTraversal();
+        BSTTraversal bstTraversal = new BSTTraversal();
 
         switch (intInput) {
             case 0:
@@ -41,11 +41,11 @@ public class BinarySearchTree {
                 bst.printTree();
                 break;
             case 2:
-                System.out.println("Call deletion method");
+                bstDeletion.delete(bst);
                 bst.printTree();
                 break;
             case 3:
-                System.out.println("Call traversal method");
+                bstTraversal.getTraversal(bst);
                 break;
         }
     }

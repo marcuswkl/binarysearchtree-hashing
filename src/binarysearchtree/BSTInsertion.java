@@ -23,9 +23,51 @@ public class BSTInsertion {
     public void insert(BSTTree bst) {
         printInsertMenu();
         int[] insertionInput = getInsertionInput();
+
         if (bst.root == null) {
+            System.out.println("Tree is empty.");
             bst.root = new BSTTree.BSTNode(insertionInput[0]);
+            BSTTree.BSTNode currentNode = bst.root;
+
+            for (int i = 1; i < insertionInput.length; i++) {
+//                while (true) {
+                    if (insertionInput[i] < currentNode.value) {
+                        if (currentNode.leftChild != null) {
+                            currentNode = currentNode.leftChild;
+                        } else {
+                            currentNode.leftChild = new BSTTree.BSTNode(insertionInput[i]);
+                        }
+                    } else {
+                        if (currentNode.rightChild != null) {
+                            currentNode = currentNode.rightChild;
+                        } else {
+                            currentNode.rightChild = new BSTTree.BSTNode(insertionInput[i]);
+                        }
+                    }
+//                }
+            }
+        } else {
+            BSTTree.BSTNode currentNode = bst.root;
+
+            for (int i = 0; i < insertionInput.length; i++) {
+                while (true) {
+                    if (insertionInput[i] < currentNode.value) {
+                        if (currentNode.leftChild != null) {
+                            currentNode = currentNode.leftChild;
+                        } else {
+                            currentNode.leftChild = new BSTTree.BSTNode(insertionInput[i]);
+                        }
+                    } else {
+                        if (currentNode.rightChild != null) {
+                            currentNode = currentNode.rightChild;
+                        } else {
+                            currentNode.rightChild = new BSTTree.BSTNode(insertionInput[i]);
+                        }
+                    }
+                }
+            }
         }
+        System.out.println("Insertion successful.");
     }
 
 }
