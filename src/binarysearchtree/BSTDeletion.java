@@ -4,21 +4,7 @@ import java.util.ArrayList;
 
 public class BSTDeletion {
 
-    public class Node {
-        Node left;
-        Node right;
-        Node root;
-
-        public void insert(Node node, int data) {
-        }
-
-        public int getData(Node node, int data) {
-
-            return data;
-        }
-    }
-
-    public static ArrayList<Integer> delete(Node node, int data) {
+   /* public static ArrayList<Integer> delete(Node node, int data) {
         int root = bst.get(0);
         node.root.insert(node.root, root);
 
@@ -58,5 +44,5 @@ public class BSTDeletion {
         }
 
         return bst;
-    }
+    }*/
 }

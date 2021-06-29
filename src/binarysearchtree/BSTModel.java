@@ -1,9 +1,14 @@
 package binarysearchtree;
 
-
-import java.util.ArrayList;
-
 public class BSTModel {
-    ArrayList<Integer> bst = new ArrayList<>();
+
+    public class BSTNode {
+        int value;
+        BSTNode leftChild, rightChild = null;
+    }
+
+    public class BSTTree {
+        BSTNode root = null;
+    }
 
 }
