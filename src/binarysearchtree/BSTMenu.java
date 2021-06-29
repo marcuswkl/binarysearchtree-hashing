@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class BSTMenu {
+
+    BSTInsertion bstInsertion = new BSTInsertion();
+
     public void printMainMenu() {
         System.out.println("Welcome to Binary Search Tree!");
         System.out.println("1. Insertion");
@@ -24,7 +27,7 @@ public class BSTMenu {
                 System.exit(0);
                 break;
             case 1:
-                System.out.println("Call insertion method");
+                bstInsertion.insert(bst);
                 break;
             case 2:
                 System.out.println("Call deletion method");

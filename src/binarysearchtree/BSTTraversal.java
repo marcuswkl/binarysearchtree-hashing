@@ -3,7 +3,6 @@ package binarysearchtree;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-
 public class BSTTraversal {
     public void printTraversalMenu(){
         System.out.println("Select traversal option:");
