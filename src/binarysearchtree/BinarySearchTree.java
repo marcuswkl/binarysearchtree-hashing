@@ -1,16 +1,15 @@
 package binarysearchtree;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class BinarySearchTree {
     public static void main(String[] args) {
-        BSTModel bstModel = new BSTModel();
+        BSTTree bst = new BSTTree();
 
         do {
             printMainMenu();
             int selectedOperation = getIntInput();
-            performOperation(selectedOperation, bstModel.bst);
+            performOperation(selectedOperation, bst);
         } while (true);
     }
 
@@ -28,7 +27,7 @@ public class BinarySearchTree {
         return keyboardInput.nextInt();
     }
 
-    public static void performOperation(int intInput, ArrayList<Integer> bst) {
+    public static void performOperation(int intInput, BSTTree bst) {
         BSTInsertion bstInsertion = new BSTInsertion();
         BSTDeletion bstDeletion = new BSTDeletion();
         BSTTraversal BSTTraversal = new BSTTraversal();
@@ -39,12 +38,15 @@ public class BinarySearchTree {
                 break;
             case 1:
                 bstInsertion.insert(bst);
+                bst.printTree();
                 break;
             case 2:
                 System.out.println("Call deletion method");
+                bst.printTree();
                 break;
             case 3:
                 System.out.println("Call traversal method");
+                break;
         }
     }
 

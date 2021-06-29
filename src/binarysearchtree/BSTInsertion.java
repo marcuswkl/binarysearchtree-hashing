@@ -1,6 +1,5 @@
 package binarysearchtree;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class BSTInsertion {
@@ -21,11 +20,11 @@ public class BSTInsertion {
         return intArray;
     }
 
-    public void insert(ArrayList<Integer> bst) {
+    public void insert(BSTTree bst) {
         printInsertMenu();
         int[] insertionInput = getInsertionInput();
-        for (int insertionInputElement : insertionInput) {
-            bst.add(insertionInputElement);
+        if (bst.root == null) {
+            bst.root = new BSTTree.BSTNode(insertionInput[0]);
         }
     }
 

@@ -1,44 +1,37 @@
 package binarysearchtree;
 
-import java.util.ArrayList;
-
 public class BSTDeletion {
 
-   /* public static ArrayList<Integer> delete(Node node, int data) {
-        int root = bst.get(0);
-        node.root.insert(node.root, root);
-
-        node.left = null;
-        node.right = null;
-        if (data < bst.get(0)) {
-            node.left.insert(node.left, data);
-        } else {
-            node.right.insert(node.right, data);
-        }
+    public void printDeleteMenu() {
+        System.out.println("Please input the integer you want to delete.");
+        System.out.println("Note: You can only delete one integer at a time.");
+    }
+/*
+   public static BSTTree delete(BSTTree.BSTNode node, int data) {
 
         //first case: no child node/deleting leaf node
-        if (node.left == null && node.right == null) {
-            delete(node.root, data);
+        if (node.leftChild == null && node.rightChild == null) {
+            delete(node, data);
         }
 
         //second case: one child node
-        if (node.left == null || node.right == null) {
-            delete(node.root, data);
-            if (data >= node.root.getData(node.root, data)) {
-                node.insert(node.left, node.left.getData(node.left, data));
+        if (node.leftChild == null || node.rightChild == null) {
+            delete(node, data);
+            if (data >= node.getData(node, data)) {
+                node.insert(node.leftChild, node.leftChild.getData(node.leftChild, data));
             } else {
-                node.insert(node.right, node.right.getData(node.right, data));
+                node.insert(node.rightChild, node.rightChild.getData(node.rightChild, data));
             }
         }
 
         //third case: two child nodes
-        if (node.left != null && node.right != null) {
-            delete(node.root, data);
+        if (node.leftChild != null && node.rightChild != null) {
+            delete(node, data);
             for (int counter = 0; counter < bst.size(); counter++) {
-                if (node.left.getData(node.left, data) >= node.root.getData(node.root, data)) {
-                    node.root.insert(node.left, data);
-                } else if (node.left.getData(node.right, data) <= node.root.getData(node.root, data)) {
-                    node.root.insert(node.right, data);
+                if (node.leftChild.getData(node.leftChild, data) >= node.getData(node, data)) {
+                    node.insert(node.leftChild, data);
+                } else if (node.leftChild.getData(node.rightChild, data) <= node.getData(node, data)) {
+                    node.insert(node.rightChild, data);
                 }
             }
         }

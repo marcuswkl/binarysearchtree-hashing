@@ -1,6 +1,5 @@
 package binarysearchtree;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class BSTTraversal {
@@ -16,10 +15,12 @@ public class BSTTraversal {
         return input.nextInt();
     }
 
-    public getTraversal(int input, ArrayList<Integer> data){
+    public void getTraversal(int input, BSTTree.BSTNode node){
         switch (input){
             case 1:
                 System.out.println("Pre-Order Traversal");
+                // node.value + node.left + node.right
+
                 break;
             case 2:
                 System.out.println("In-Order Traversal");
@@ -31,5 +32,12 @@ public class BSTTraversal {
                 break;
         }
     }
+
+    public void traversal(BSTTree bst){
+        printTraversalMenu();
+        getTraversalOption();
+
+    }
+
 
 }
