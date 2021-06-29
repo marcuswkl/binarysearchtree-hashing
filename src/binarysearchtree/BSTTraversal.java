@@ -1,11 +1,9 @@
 package binarysearchtree;
 
-<<<<<<< HEAD
 import java.util.ArrayList;
 import java.util.Scanner;
 
-=======
->>>>>>> BST-deletion
+
 public class BSTTraversal {
     public void printTraversalMenu(){
         System.out.println("Select traversal option:");
@@ -14,7 +12,6 @@ public class BSTTraversal {
         System.out.println("3. Post-order traversal");
     }
 
-<<<<<<< HEAD
     public int getTraversalOption(){
         Scanner input = new Scanner(System.in);
         return input.nextInt();
@@ -35,7 +32,5 @@ public class BSTTraversal {
                 break;
         }
     }
-=======
 
->>>>>>> BST-deletion
 }
