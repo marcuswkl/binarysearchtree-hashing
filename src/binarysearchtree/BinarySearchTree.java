@@ -19,7 +19,7 @@ public class BinarySearchTree {
         System.out.println("2. Deletion");
         System.out.println("3. Traversal");
         System.out.println("0. Exit");
-        System.out.println("Please input an integer to select your desired operation.");
+        System.out.println("Please input an integer (0 to 3) to select your desired operation.");
     }
 
     public static int getIntInput() {
@@ -46,6 +46,9 @@ public class BinarySearchTree {
                 break;
             case 3:
                 bstTraversal.getTraversal(bst);
+                break;
+            default:
+                System.out.println("Invalid operation selected.");
                 break;
         }
     }

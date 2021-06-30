@@ -26,7 +26,7 @@ public class BSTTraversal {
                 printInOrder(node);
                 break;
             case 3:
-                System.out.println("Out-Order Traversal: ");
+                System.out.println("Post-Order Traversal: ");
                 printPostOrder(node);
                 break;
             default:
@@ -35,21 +35,30 @@ public class BSTTraversal {
     }
 
     public void printPreOrder(BSTTree.BSTNode node){
-        System.out.print(node.value + ", ");
+        if (node == null) {
+            return;
+        }
+        System.out.print(node.value + " ");
         printPreOrder(node.leftChild);
         printPreOrder(node.rightChild);
     }
 
     public void printInOrder(BSTTree.BSTNode node){
+        if (node == null) {
+            return;
+        }
         printInOrder(node.leftChild);
-        System.out.print(node.value + ", ");
+        System.out.print(node.value + " ");
         printInOrder(node.rightChild);
     }
 
     public void printPostOrder(BSTTree.BSTNode node){
+        if (node == null) {
+            return;
+        }
         printPostOrder(node.leftChild);
         printPostOrder(node.rightChild);
-        System.out.print(node.value + ", ");
+        System.out.print(node.value + " ");
     }
 
     public void getTraversal(BSTTree bst){
@@ -61,6 +70,7 @@ public class BSTTraversal {
         else{
             System.out.println("Please insert the node in the tree.");
         }
+        System.out.println();
 
     }
 
