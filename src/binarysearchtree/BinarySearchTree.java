@@ -38,11 +38,11 @@ public class BinarySearchTree {
                 break;
             case 1:
                 bstInsertion.insert(bst);
-                bst.printTree();
+                System.out.println(bst.root.toString());
                 break;
             case 2:
                 bstDeletion.delete(bst);
-                bst.printTree();
+                System.out.println(bst.root.toString());
                 break;
             case 3:
                 bstTraversal.getTraversal(bst);

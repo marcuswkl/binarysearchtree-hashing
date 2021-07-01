@@ -35,15 +35,15 @@ public class Hashing {
                 System.exit(0);
                 break;
             case 1:
-//                bstInsertion.insert(bst);
+//                hashingInsertion.insert(hashMap);
 //                bst.printTree();
                 break;
             case 2:
-//                bstDeletion.delete(bst);
+//                hashingDeletion.delete(hashMap);
 //                bst.printTree();
                 break;
             case 3:
-//                bstTraversal.getTraversal(bst);
+//                hashingSearch.search(hashMap);
                 break;
             default:
                 System.out.println("Invalid operation selected.");

@@ -20,6 +20,11 @@ public class BSTDeletion {
         else if (deletionInput > bst.root.value){
                 if (deletionInput == bst.root.rightChild.value) {
                     performDeletion(bst.root.rightChild, bst.root.rightChild.value);
+                    if(bst.root.rightChild==null){
+                        System.out.println("The node is deleted");
+                    } else {
+                        System.out.println("The node is not deleted");
+                    }
                 } else if (deletionInput >= bst.root.rightChild.value) {
                     performDeletion(bst.root.rightChild.rightChild, bst.root.rightChild.rightChild.value);
                 } else if (deletionInput < bst.root.leftChild.value) {
@@ -49,17 +54,23 @@ public class BSTDeletion {
         }
     }
 
-    public BSTTree.BSTNode removeNode(BSTTree.BSTNode node){
+/*    public BSTTree.BSTNode removeNode(BSTTree.BSTNode node){
         System.out.println("The selected node to delete is " + node.value);
         node = null;
         return null;
-    }
+    }*/
 
-    public void performDeletion(BSTTree.BSTNode node, int intInput) {
+    public BSTTree.BSTNode performDeletion(BSTTree.BSTNode node, int intInput) {
         //first case: no child node/deleting leaf node
         if (node.leftChild == null && node.rightChild == null) {
             System.out.println("This is a leaf node.");
-            removeNode(node);
+            node = null;
+            if(node==null){
+                System.out.println("The node is deleted");
+            } else {
+                System.out.println("The node is not deleted");
+            }
+            return null;
         }
 
         //second case: one child node
@@ -69,11 +80,11 @@ public class BSTDeletion {
             if (intInput >= node.leftChild.value) {
                 System.out.println("The node is replaced by its left child.");
                 node.value = node.leftChild.value;
-                removeNode(node.leftChild);
+                return null;
             } else {
                 System.out.println("The node is replaced by its right child.");
                 node.value = node.rightChild.value;
-                removeNode(node.rightChild);
+                return null;
             }
         }
 
@@ -82,7 +93,8 @@ public class BSTDeletion {
             System.out.println("The node is replaced.");
             BSTTree.BSTNode smallestRight = smallestNumber(node.leftChild);
             node.value = smallestRight.value;
-            removeNode(smallestRight);
+            smallestRight = null;
+            return smallestRight;
         }
     }
 }
