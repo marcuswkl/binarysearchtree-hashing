@@ -73,19 +73,20 @@ public class BSTDeletion {
             return null;
         }
 
-        //second case: one child node
-        else if ((node.leftChild != null && node.rightChild == null) ||
-                (node.rightChild != null && node.leftChild == null)) {
-            System.out.println("This node has one child.");
-            if (intInput >= node.leftChild.value) {
-                System.out.println("The node is replaced by its left child.");
-                node.value = node.leftChild.value;
-                return null;
-            } else {
-                System.out.println("The node is replaced by its right child.");
-                node.value = node.rightChild.value;
-                return null;
-            }
+        //second case: one left child node
+        else if (node.leftChild != null && node.rightChild == null) {
+            System.out.println("This node has one left child.");
+            System.out.println("The node is replaced by its left child.");
+            node.value = node.leftChild.value;
+            return null;
+        }
+
+        //third case: one right child node
+        else if (node.rightChild != null && node.leftChild == null) {
+            System.out.println("This node has one right child.");
+            System.out.println("The node is replaced by its right child.");
+            node.value = node.rightChild.value;
+            return null;
         }
 
         //third case: two child nodes // (node.leftChild != null && node.rightChild != null)
@@ -93,8 +94,7 @@ public class BSTDeletion {
             System.out.println("The node is replaced.");
             BSTTree.BSTNode smallestRight = smallestNumber(node.leftChild);
             node.value = smallestRight.value;
-            smallestRight = null;
-            return smallestRight;
+            return null;
         }
     }
 }
