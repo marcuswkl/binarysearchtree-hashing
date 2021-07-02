@@ -10,10 +10,10 @@ public class HashingSearch {
         return intInput;
     }
 
-    public void search(HashingModel hashingModel){
+    public void search(HashingModel hashingModel) {
         int searchInput = getSearchInput();
         int arrayIndex = searchInput % 23 % hashingModel.hashTable.length;
-        while (hashingModel.hashTable[arrayIndex] != -1){
+        while (hashingModel.hashTable[arrayIndex] != -1) {
             if (hashingModel.hashTable[arrayIndex] == searchInput) {
                 System.out.println(searchInput + "was found in the index" + arrayIndex);
             }
@@ -21,3 +21,4 @@ public class HashingSearch {
             arrayIndex = arrayIndex % hashingModel.hashTable.length;
         }
     }
+}
