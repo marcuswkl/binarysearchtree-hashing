@@ -1,16 +1,15 @@
 package hashing;
 
-import java.util.HashMap;
 import java.util.Scanner;
 
 public class Hashing {
     public static void main(String[] args) {
-        HashMap<Integer, Integer> hashMap = new HashMap<Integer, Integer>();
+        HashingModel hashingModel = new HashingModel();
 
         do {
             printMainMenu();
             int selectedOperation = getIntInput();
-            performOperation(selectedOperation, hashMap);
+            performOperation(selectedOperation, hashingModel);
         } while (true);
     }
 
@@ -28,22 +27,22 @@ public class Hashing {
         return keyboardInput.nextInt();
     }
 
-    public static void performOperation(int intInput, HashMap<Integer, Integer> hashMap) {
+    public static void performOperation(int intInput, HashingModel hashingModel) {
 
         switch (intInput) {
             case 0:
                 System.exit(0);
                 break;
             case 1:
-//                hashingInsertion.insert(hashMap);
-//                bst.printTree();
+//                hashingInsertion.insert(hash);
+                hashingModel.printHashTable();
                 break;
             case 2:
-//                hashingDeletion.delete(hashMap);
+//                hashingDeletion.delete(hash);
 //                bst.printTree();
                 break;
             case 3:
-//                hashingSearch.search(hashMap);
+//                hashingSearch.search(hashTable);
                 break;
             default:
                 System.out.println("Invalid operation selected.");
