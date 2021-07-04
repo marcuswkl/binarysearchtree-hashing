@@ -8,37 +8,36 @@ public class BSTDeletion {
         System.out.println("Please input the integer you want to delete.");
         System.out.println("Note: You can only delete one integer at a time.");
         Scanner keyboardInput = new Scanner(System.in);
-        int intInput = keyboardInput.nextInt();
-        return intInput;
+        return keyboardInput.nextInt();
     }
 
     public void delete(BSTTree bst) {
         int deletionInput = getDeletionInput();
         if (deletionInput == bst.root.value){
-            performDeletion(bst.root, bst.root.value);
+            performDeletion(bst, bst.root);
         }
         else if (deletionInput > bst.root.value){
                 if (deletionInput == bst.root.rightChild.value) {
-                    performDeletion(bst.root.rightChild, bst.root.rightChild.value);
+                    performDeletion(bst, bst.root.rightChild);
                     if(bst.root.rightChild==null){
                         System.out.println("The node is deleted");
                     } else {
                         System.out.println("The node is not deleted");
                     }
                 } else if (deletionInput >= bst.root.rightChild.value) {
-                    performDeletion(bst.root.rightChild.rightChild, bst.root.rightChild.rightChild.value);
+                    performDeletion(bst, bst.root.rightChild.rightChild);
                 } else if (deletionInput < bst.root.leftChild.value) {
-                    performDeletion(bst.root.rightChild.leftChild, bst.root.rightChild.leftChild.value);
+                    performDeletion(bst, bst.root.rightChild.leftChild);
                 } else {
                     System.out.println("The number is not found in the Binary Search Tree");
                 }
         } else {
             if (deletionInput == bst.root.leftChild.value) {
-                performDeletion(bst.root.leftChild, bst.root.leftChild.value);
+                performDeletion(bst, bst.root.leftChild);
             } else if (deletionInput > bst.root.leftChild.value) {
-                performDeletion(bst.root.leftChild.rightChild, bst.root.leftChild.rightChild.value);
+                performDeletion(bst, bst.root.leftChild.rightChild);
             } else if (deletionInput < bst.root.leftChild.value) {
-                performDeletion(bst.root.leftChild.leftChild, bst.root.leftChild.leftChild.value);
+                performDeletion(bst, bst.root.leftChild.leftChild);
             } else {
                 System.out.println("The number is not found in the Binary Search Tree");
             }
@@ -54,17 +53,13 @@ public class BSTDeletion {
         }
     }
 
-    public BSTTree.BSTNode performDeletion(BSTTree.BSTNode node, int intInput) {
+    public void performDeletion(BSTTree bst, BSTTree.BSTNode node) {
         //first case: no child node/deleting leaf node
         if (node.leftChild == null && node.rightChild == null) {
             System.out.println("This is a leaf node.");
-            node = null;
-            if(node==null){
-                System.out.println("The node is deleted");
-            } else {
-                System.out.println("The node is not deleted");
-            }
-            return null;
+            node.leftChild = null;
+            node.rightChild = null;
+            BSTTree.node = null;
         }
 
         //second case: one left child node
@@ -72,7 +67,7 @@ public class BSTDeletion {
             System.out.println("This node has one left child.");
             System.out.println("The node is replaced by its left child.");
             node.value = node.leftChild.value;
-            return null;
+            node.leftChild = null;
         }
 
         //third case: one right child node
@@ -80,7 +75,7 @@ public class BSTDeletion {
             System.out.println("This node has one right child.");
             System.out.println("The node is replaced by its right child.");
             node.value = node.rightChild.value;
-            return null;
+            node.rightChild = null;
         }
 
         //third case: two child nodes // (node.leftChild != null && node.rightChild != null)
@@ -88,7 +83,7 @@ public class BSTDeletion {
             System.out.println("The node is replaced.");
             BSTTree.BSTNode smallestRight = smallestNumber(node.leftChild);
             node.value = smallestRight.value;
-            return null;
+            node.leftChild = null;
         }
     }
 }
