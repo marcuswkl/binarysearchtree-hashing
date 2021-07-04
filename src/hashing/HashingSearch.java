@@ -12,13 +12,20 @@ public class HashingSearch {
 
     public void search(HashingModel hashingModel) {
         int searchInput = getSearchInput();
-        int arrayIndex = searchInput % 23 % hashingModel.hashTable.length;
+        findInput(hashingModel, searchInput);
+    }
+
+    public int findInput(HashingModel hashingModel, int searchInput) {
+        int arrayIndex = searchInput % hashingModel.hashTable.length;
         while (hashingModel.hashTable[arrayIndex] != -1) {
             if (hashingModel.hashTable[arrayIndex] == searchInput) {
-                System.out.println(searchInput + "was found in the index" + arrayIndex);
+                System.out.println(searchInput + " was found in the index " + arrayIndex);
+                return hashingModel.hashTable[arrayIndex];
             }
             ++arrayIndex;
-            arrayIndex = arrayIndex % hashingModel.hashTable.length;
+            arrayIndex %= hashingModel.hashTable.length;
         }
+        System.out.println("The number is not in the hash table.");
+        return -1;
     }
 }

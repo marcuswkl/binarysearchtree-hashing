@@ -1,35 +1,34 @@
 package hashing;
 
+import java.util.Arrays;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class HashingDeletion {
 
-    int[] testdata = {5, 3, 25, 68};
-
-
-    public void delete(){
+    public void delete(HashingModel hashingModel){
         int deleteKey = getDeletionInput();
+        boolean ifExist = Arrays.stream(hashingModel.hashTable).anyMatch(x -> x == deleteKey);
+
+        while(ifExist) {
+            for (int i=0; i<hashingModel.hashTable.length;i++){
+                if (hashingModel.hashTable[i] == deleteKey){
+                    hashingModel.hashTable[i] = -1;
+                    System.out.println(deleteKey + " is deleted.");
+                    break;
+                }
+            }
+        }
+        System.out.println("The number is not in the hash table");
     }
 
+
+
     public int getDeletionInput(){
+        System.out.println("Please input the integer you want to delete.");
+        System.out.println("Note: You can only delete one integer at a time.");
         Scanner input = new Scanner(System.in);
         return input.nextInt();
     }
-
-    // take in key array
-    // search for the key value
-    // remove
-    public void performDeletion(HashingModel hashingModel, int deleteKey){
-        for (int i = 0; i<hashingModel.hashTable.length;i++){
-            while(hashingModel.hashTable[i] == deleteKey){
-                hashingModel.hashTable[i] = null;
-                System.out.println(deleteKey + "is deleted.");
-            }
-        }
-    }
-
-
-
-
 
 }

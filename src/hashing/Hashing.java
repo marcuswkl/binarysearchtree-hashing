@@ -1,10 +1,14 @@
 package hashing;
 
+import binarysearchtree.BSTDeletion;
+import binarysearchtree.BSTInsertion;
+import binarysearchtree.BSTTraversal;
+
 import java.util.Scanner;
 
 public class Hashing {
     public static void main(String[] args) {
-        HashingModel hashingModel = new HashingModel();
+        HashingModel hashingModel = new HashingModel(7);
 
         do {
             printMainMenu();
@@ -28,21 +32,24 @@ public class Hashing {
     }
 
     public static void performOperation(int intInput, HashingModel hashingModel) {
+        HashingInsertion hashingInsertion = new HashingInsertion();
+        HashingDeletion hashingDeletion = new HashingDeletion();
+        HashingSearch hashingSearch = new HashingSearch();
 
         switch (intInput) {
             case 0:
                 System.exit(0);
                 break;
             case 1:
-//                hashingInsertion.insert(hash);
+                hashingInsertion.insert(hashingModel);
                 hashingModel.printHashTable();
                 break;
             case 2:
-//                hashingDeletion.delete(hash);
-//                bst.printTree();
+                hashingDeletion.delete(hashingModel);
+                hashingModel.printHashTable();
                 break;
             case 3:
-//                hashingSearch.search(hashTable);
+                hashingSearch.search(hashingModel);
                 break;
             default:
                 System.out.println("Invalid operation selected.");

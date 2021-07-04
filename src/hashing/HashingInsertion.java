@@ -5,8 +5,8 @@ import java.util.Scanner;
 public class HashingInsertion {
 
     public void printInsertMenu() {
-        System.out.println("Please input a list of integers (0 to 99) separated by commas with a space.");
-        System.out.println("For example: 61, 25, 54, 92, 13");
+        System.out.println("Please input a list of 10 positive integers (0 to 99) separated by commas with a space.");
+        System.out.println("For example: 26, 32, 19, 11, 35, 9");
     }
 
     public int[] getInsertionInput() {
@@ -26,12 +26,10 @@ public class HashingInsertion {
     }
 
     public int selectCollisionMethod() {
-        System.out.println("Collision Resolution Methods");
-        System.out.println("1. Open Addressing - Linear Probing");
-        System.out.println("2. Open Addressing - Quadratic Probing");
-        System.out.println("3. Open Addressing - Double Hashing");
-        System.out.println("4. Separate Chaining");
-        System.out.println("Please input an integer (1 to 4) to select your desired operation.");
+        System.out.println("Collision Resolution Method");
+        System.out.println("1. Open Addressing (Linear Probing)");
+        System.out.println("2. Open Addressing (Quadratic Probing)");
+        System.out.println("Please input an integer (1 to 2) to select your desired operation.");
 
         return getIntInput();
     }
@@ -41,16 +39,10 @@ public class HashingInsertion {
         int[] insertionInput = getInsertionInput();
         switch (selectCollisionMethod()) {
             case 1:
-                linearProbing(hashingModel, insertionInput);
+                openAddressing(hashingModel, insertionInput);
                 break;
             case 2:
                 quadraticProbing(hashingModel, insertionInput);
-                break;
-            case 3:
-                doubleHashing(hashingModel, insertionInput);
-                break;
-            case 4:
-                separateChaining(hashingModel, insertionInput);
                 break;
             default:
                 System.out.println("Invalid method selected.");
@@ -58,20 +50,46 @@ public class HashingInsertion {
         }
     }
 
-    public void linearProbing(HashingModel hashingModel, int[] insertionInput) {
-        System.out.println("Linear Probing");
+    public void openAddressing(HashingModel hashingModel, int[] insertionInput) {
+        System.out.println("Open Addressing (Linear Probing)");
+        int index;
+        for (int key : insertionInput) {
+            index = hashFunction(key, hashingModel.tableSize);
+
+            while (hashingModel.hashTable[index] != -1) {
+                System.out.println("Collision occurs when inserting " + key + " into " + index + ".");
+                index++;
+                // Reset index to 0 if reached last index in hash table
+                index %= hashingModel.tableSize;
+            }
+
+            hashingModel.hashTable[index] = key;
+        }
     }
-    
+
     public void quadraticProbing(HashingModel hashingModel, int[] insertionInput) {
-        System.out.println("Quadratic Probing");
+        System.out.println("Open Addressing (Quadratic Probing)");
+        int index;
+        int stepSize = 1;
+        for (int key : insertionInput) {
+            index = hashFunction(key, hashingModel.tableSize);
+
+            while (hashingModel.hashTable[index] != -1) {
+                System.out.println("Collision occurs when inserting " + key + " into " + index + ".");
+                for (int stepCount = 0; stepCount < stepSize; stepCount++) {
+                    index++;
+                    // Reset index to 0 if reached last index in hash table
+                    index %= hashingModel.tableSize;
+                }
+                stepSize *= stepSize;
+            }
+
+            hashingModel.hashTable[index] = key;
+        }
     }
 
-    public void doubleHashing(HashingModel hashingModel, int[] insertionInput) {
-        System.out.println("Double Hashing");
-    }
-
-    public void separateChaining(HashingModel hashingModel, int[] insertionInput) {
-        System.out.println("Separate Chaining");
+    public int hashFunction(int key, int tableSize) {
+        return key % tableSize;
     }
 
 }

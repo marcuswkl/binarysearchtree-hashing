@@ -54,12 +54,6 @@ public class BSTDeletion {
         }
     }
 
-/*    public BSTTree.BSTNode removeNode(BSTTree.BSTNode node){
-        System.out.println("The selected node to delete is " + node.value);
-        node = null;
-        return null;
-    }*/
-
     public BSTTree.BSTNode performDeletion(BSTTree.BSTNode node, int intInput) {
         //first case: no child node/deleting leaf node
         if (node.leftChild == null && node.rightChild == null) {
