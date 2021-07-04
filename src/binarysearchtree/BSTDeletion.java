@@ -14,30 +14,30 @@ public class BSTDeletion {
     public void delete(BSTTree bst) {
         int deletionInput = getDeletionInput();
         if (deletionInput == bst.root.value){
-            performDeletion(bst, bst.root);
+            performDeletion(bst.root);
         }
         else if (deletionInput > bst.root.value){
                 if (deletionInput == bst.root.rightChild.value) {
-                    performDeletion(bst, bst.root.rightChild);
+                    performDeletion(bst.root.rightChild);
                     if(bst.root.rightChild==null){
                         System.out.println("The node is deleted");
                     } else {
                         System.out.println("The node is not deleted");
                     }
                 } else if (deletionInput >= bst.root.rightChild.value) {
-                    performDeletion(bst, bst.root.rightChild.rightChild);
+                    performDeletion(bst.root.rightChild.rightChild);
                 } else if (deletionInput < bst.root.leftChild.value) {
-                    performDeletion(bst, bst.root.rightChild.leftChild);
+                    performDeletion(bst.root.rightChild.leftChild);
                 } else {
                     System.out.println("The number is not found in the Binary Search Tree");
                 }
         } else {
             if (deletionInput == bst.root.leftChild.value) {
-                performDeletion(bst, bst.root.leftChild);
+                performDeletion(bst.root.leftChild);
             } else if (deletionInput > bst.root.leftChild.value) {
-                performDeletion(bst, bst.root.leftChild.rightChild);
+                performDeletion(bst.root.leftChild.rightChild);
             } else if (deletionInput < bst.root.leftChild.value) {
-                performDeletion(bst, bst.root.leftChild.leftChild);
+                performDeletion(bst.root.leftChild.leftChild);
             } else {
                 System.out.println("The number is not found in the Binary Search Tree");
             }
@@ -53,13 +53,11 @@ public class BSTDeletion {
         }
     }
 
-    public void performDeletion(BSTTree bst, BSTTree.BSTNode node) {
+    public void performDeletion(BSTTree.BSTNode node) {
         //first case: no child node/deleting leaf node
         if (node.leftChild == null && node.rightChild == null) {
             System.out.println("This is a leaf node.");
-            node.leftChild = null;
-            node.rightChild = null;
-            BSTTree.node = null;
+            node = null;
         }
 
         //second case: one left child node
