@@ -36,40 +36,4 @@ public class BSTTree {
         root = null;
     }
 
-//    public void printTree() {
-//    }
-
-/*    public void printOneNodeTree() {
-        if (root == null) {
-            System.out.println("The tree is empty.");
-        } else {
-            System.out.println(root.value);
-        }
-    }
-
-    public void printTwoNodeTree() {
-
-    }*/
-
-    public void printBalancedThreeNodeTree() {
-        if (root == null) {
-            System.out.println("The tree is empty.");
-        } else {
-            System.out.println("        " + root.value);
-            BSTNode currentNode = root;
-            for (int i = 0; i < 1; i++) {
-                if (currentNode.leftChild != null && currentNode.rightChild == null) {
-                    System.out.println("    /");
-                    System.out.println(currentNode.leftChild.value);
-                } else if (currentNode.leftChild == null && currentNode.rightChild != null) {
-                    System.out.println("        \\");
-                    System.out.println("        " + currentNode.rightChild.value);
-                } else if (currentNode.leftChild != null && currentNode.rightChild != null) {
-                    System.out.println("    /       \\");
-                    System.out.println(currentNode.leftChild.value + "              "
-                            + currentNode.rightChild.value);
-                }
-            }
-        }
-    }
 }

@@ -1,21 +1,17 @@
 package hashing;
 
-import java.util.Arrays;
-import java.util.Objects;
 import java.util.Scanner;
 
 public class HashingDeletion {
 
-    public HashingModel delete(HashingModel hashingModel){
+    public void delete(HashingModel hashingModel){
         int deleteKey = getDeletionInput();
-        boolean check = ifExist(hashingModel,deleteKey);
-        if(check){
+        boolean exists = checkIfExist(hashingModel,deleteKey);
+        if(exists){
+            performDeletion(hashingModel,deleteKey);
+        } else {
             System.out.println("The number is not in the hash table");
         }
-        else {
-            performDeletion(hashingModel,deleteKey);
-            return hashingModel;
-        } return hashingModel;
     }
 
     public int getDeletionInput(){
@@ -25,24 +21,21 @@ public class HashingDeletion {
         return input.nextInt();
     }
 
-    public boolean ifExist(HashingModel hashingModel, int deleteKey) {
-        for(int i : hashingModel.hashTable){
-            if(hashingModel.hashTable.equals(deleteKey))
+    public boolean checkIfExist(HashingModel hashingModel, int deleteKey) {
+        for(int i=0; i<hashingModel.hashTable.length; i++){
+            if (hashingModel.hashTable[i] == deleteKey)
                 return true;
-            else{
-                return false;
-            }
         }
         return false;
     }
 
-    public HashingModel performDeletion(HashingModel hashingModel, int deleteKey){
-        for (int i=0; i<hashingModel.hashTable.length;i++){
+    public void performDeletion(HashingModel hashingModel, int deleteKey){
+        for (int i=0; i<hashingModel.hashTable.length; i++){
             if (hashingModel.hashTable[i] == deleteKey){
                 hashingModel.hashTable[i] = -1;
                 System.out.println(deleteKey + " is deleted.");
             }
-        } return hashingModel;
+        }
     }
 
 }

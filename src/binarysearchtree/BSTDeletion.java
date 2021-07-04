@@ -53,11 +53,12 @@ public class BSTDeletion {
         }
     }
 
-    public void performDeletion(BSTTree.BSTNode node) {
+    public BSTTree.BSTNode performDeletion(BSTTree.BSTNode node) {
         //first case: no child node/deleting leaf node
         if (node.leftChild == null && node.rightChild == null) {
             System.out.println("This is a leaf node.");
-            node = null;
+            //node = null;
+            return null;
         }
 
         //second case: one left child node
@@ -83,6 +84,7 @@ public class BSTDeletion {
             node.value = smallestRight.value;
             node.leftChild = null;
         }
+        return node;
     }
 }
 

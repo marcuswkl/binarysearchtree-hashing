@@ -29,7 +29,8 @@ public class HashingInsertion {
         System.out.println("Collision Resolution Method");
         System.out.println("1. Open Addressing (Linear Probing)");
         System.out.println("2. Open Addressing (Quadratic Probing)");
-        System.out.println("Please input an integer (1 to 2) to select your desired operation.");
+        System.out.println("3. Open Addressing (Double Hashing)");
+        System.out.println("Please input an integer (1 to 3) to select your desired operation.");
 
         return getIntInput();
     }
@@ -43,6 +44,9 @@ public class HashingInsertion {
                 break;
             case 2:
                 quadraticProbing(hashingModel, insertionInput);
+                break;
+            case 3:
+                doubleHashing(hashingModel, insertionInput);
                 break;
             default:
                 System.out.println("Invalid method selected.");
@@ -70,18 +74,37 @@ public class HashingInsertion {
     public void quadraticProbing(HashingModel hashingModel, int[] insertionInput) {
         System.out.println("Open Addressing (Quadratic Probing)");
         int index;
-        int stepSize = 1;
         for (int key : insertionInput) {
             index = hashFunction(key, hashingModel.tableSize);
 
+            if (hashingModel.hashTable[index] == -1) {
+                hashingModel.hashTable[index] = key;
+            } else {
+                System.out.println("Collision occurs when inserting " + key + " into " + index + ".");
+                for (int i = 0; i < hashingModel.tableSize; i++) {
+                    int t = (index + i * i) % hashingModel.tableSize;
+
+                    if (hashingModel.hashTable[t] == -1) {
+                        hashingModel.hashTable[t] = key;
+                        break;
+                    }
+                }
+            }
+        }
+    }
+
+    public void doubleHashing(HashingModel hashingModel, int[] insertionInput) {
+        System.out.println("Open Addressing (Double Hashing)");
+        int index;
+        for (int key : insertionInput) {
+            index = hashFunction(key, hashingModel.tableSize);
+            int stepSize = doubleHashFunction(key);
+
             while (hashingModel.hashTable[index] != -1) {
                 System.out.println("Collision occurs when inserting " + key + " into " + index + ".");
-                for (int stepCount = 0; stepCount < stepSize; stepCount++) {
-                    index++;
-                    // Reset index to 0 if reached last index in hash table
-                    index %= hashingModel.tableSize;
-                }
-                stepSize *= stepSize;
+                index += stepSize;
+                // Reset index to 0 if reached last index in hash table
+                index %= hashingModel.tableSize;
             }
 
             hashingModel.hashTable[index] = key;
@@ -90,6 +113,10 @@ public class HashingInsertion {
 
     public int hashFunction(int key, int tableSize) {
         return key % tableSize;
+    }
+
+    public int doubleHashFunction(int key) {
+        return 5 - (key % 5);
     }
 
 }
