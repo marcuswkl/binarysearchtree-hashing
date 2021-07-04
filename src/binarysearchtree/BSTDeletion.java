@@ -29,8 +29,15 @@ public class BSTDeletion {
                 } else if (deletionInput < bst.root.leftChild.value) {
                     performDeletion(bst.root.rightChild.leftChild);
                 } else {
-                    System.out.println("The number is not found in the Binary Search Tree");
+                    System.out.println("The node is not deleted");
                 }
+            } else if (deletionInput >= bst.root.rightChild.value) {
+                performDeletion(bst.root.rightChild.rightChild);
+            } else if (deletionInput < bst.root.leftChild.value) {
+                performDeletion(bst.root.rightChild.leftChild);
+            } else {
+                System.out.println("The number is not found in the Binary Search Tree");
+            }
         } else {
             if (deletionInput == bst.root.leftChild.value) {
                 performDeletion(bst.root.leftChild);
