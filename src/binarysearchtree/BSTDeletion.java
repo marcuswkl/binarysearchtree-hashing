@@ -14,10 +14,11 @@ public class BSTDeletion {
 
     public void delete(BSTTree bst) {
         int deletionInput = getDeletionInput();
-        performDeletion(deletionInput, bst);
+        //(deletionInput, bst);
+        performDeletion(bst.root, deletionInput);
     }
 
-    public boolean performDeletion(int deletionInput, BSTTree bst) {
+    /*public boolean performDeletion(int deletionInput, BSTTree bst) {
         BSTTree.BSTNode currentNode = bst.root;
         BSTTree.BSTNode parentNode = bst.root;
 
@@ -90,11 +91,56 @@ public class BSTDeletion {
             replacementValue.rightChild = replacement.rightChild;
         }
         return replacement;
+    }*/
+
+    BSTTree.BSTNode performDeletion(BSTTree.BSTNode root, int key)
+    {
+        /* Base Case: If the tree is empty */
+        if (root == null)
+            return root;
+
+        /* Otherwise, recur down the tree */
+        if (key < root.value)
+            root.leftChild = performDeletion(root.leftChild, key);
+        else if (key > root.value)
+            root.rightChild = performDeletion(root.rightChild, key);
+
+            // if key is same as root's
+            // key, then This is the
+            // node to be deleted
+        else {
+            // node with only one child or no child
+            if (root.leftChild == null)
+                return root.rightChild;
+            else if (root.rightChild == null)
+                return root.leftChild;
+
+            // node with two children: Get the inorder
+            // successor (smallest in the right subtree)
+            root.value = minValue(root.rightChild);
+
+            // Delete the inorder successor
+            root.rightChild = performDeletion(root.rightChild, root.value);
+        }
+
+        return root;
     }
+
+    public int minValue(BSTTree.BSTNode root)
+    {
+        int minv = root.value;
+        while (root.leftChild != null)
+        {
+            minv = root.leftChild.value;
+            root = root.leftChild;
+        }
+        return minv;
+    }
+
+
+
+
 }
-
-
-
 
  /*      if (deletionInput == bst.root.value){
             performDeletion(bst.root);
