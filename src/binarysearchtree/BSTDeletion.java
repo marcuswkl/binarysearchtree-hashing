@@ -2,6 +2,7 @@ package binarysearchtree;
 
 import java.util.Scanner;
 
+
 public class BSTDeletion {
 
     public int getDeletionInput() {
@@ -13,7 +14,89 @@ public class BSTDeletion {
 
     public void delete(BSTTree bst) {
         int deletionInput = getDeletionInput();
-        if (deletionInput == bst.root.value){
+        performDeletion(deletionInput, bst);
+    }
+
+    public boolean performDeletion(int deletionInput, BSTTree bst) {
+        BSTTree.BSTNode currentNode = bst.root;
+        BSTTree.BSTNode parentNode = bst.root;
+
+        boolean existAsLeftChild = true;
+
+        while (currentNode.value != deletionInput) {
+            parentNode = currentNode;
+            if (deletionInput < currentNode.value) {
+                existAsLeftChild = true;
+                currentNode = currentNode.leftChild;
+            } else {
+                existAsLeftChild = false;
+                currentNode = currentNode.rightChild;
+            }
+            if (currentNode == null){
+                return false;
+            }
+        }
+
+        if (currentNode.leftChild == null && currentNode.rightChild == null) {
+            if (currentNode == bst.root) {
+                bst.root = null;
+            } else if (existAsLeftChild) {
+                parentNode.leftChild = null;
+            } else {
+                parentNode.rightChild = null;
+            }
+        } else if (currentNode.rightChild == null) {
+            if (currentNode == bst.root) {
+                bst.root = currentNode.leftChild;
+            } else if (existAsLeftChild) {
+                parentNode.leftChild = currentNode.leftChild;
+            } else {
+                parentNode.rightChild = currentNode.leftChild;
+            }
+        } else if (currentNode.leftChild == null) {
+            if (currentNode == bst.root) {
+                bst.root = currentNode.rightChild;
+            } else if (existAsLeftChild) {
+                parentNode.leftChild = currentNode.rightChild;
+            } else {
+                parentNode.rightChild = currentNode.rightChild;
+            }
+        } else {
+            BSTTree.BSTNode replacement = getReplacementNode(currentNode);
+            if (currentNode == bst.root) {
+                bst.root = replacement;
+            } else if (existAsLeftChild) {
+                parentNode.leftChild = replacement;
+            } else {
+                parentNode.rightChild = replacement;
+                replacement.leftChild = currentNode.leftChild;
+            }
+
+        }
+        return true;
+    }
+
+    public BSTTree.BSTNode getReplacementNode(BSTTree.BSTNode replacement) {
+        BSTTree.BSTNode replacementParentNode = replacement;
+        BSTTree.BSTNode replacementValue = replacement;
+        BSTTree.BSTNode currentNode = replacement.rightChild;
+        while (currentNode != null) {
+            replacementParentNode = replacementValue;
+            replacementValue = currentNode;
+            currentNode = currentNode.leftChild;
+        }
+        if (replacementValue != replacement.rightChild) {
+            replacementParentNode.leftChild = replacementValue.rightChild;
+            replacementValue.rightChild = replacement.rightChild;
+        }
+        return replacement;
+    }
+}
+
+
+
+
+ /*      if (deletionInput == bst.root.value){
             performDeletion(bst.root);
         }
         else if (deletionInput > bst.root.value){
@@ -96,7 +179,7 @@ public class BSTDeletion {
 }
 
 
-    /*public boolean inputExist(BSTTree.BSTNode node, int deletionInput) {
+    public boolean inputExist(BSTTree.BSTNode node, int deletionInput) {
         if(node == null) {
             return false;
         }
