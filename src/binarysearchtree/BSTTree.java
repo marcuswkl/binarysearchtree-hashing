@@ -12,18 +12,17 @@ public class BSTTree {
             rightChild = null;
         }
 
-        @Override
-        public String toString() {
-            return this.toString(new StringBuilder(), true, new StringBuilder()).toString();
+        public String printTree() {
+            return this.printTree(new StringBuilder(), true, new StringBuilder()).toString();
         }
 
-        public StringBuilder toString(StringBuilder TreeConstructor, boolean existAsLast, StringBuilder sb) {
+        public StringBuilder printTree(StringBuilder TreeConstructor, boolean existAsLast, StringBuilder sb) {
             if(rightChild!=null) {
-                rightChild.toString(new StringBuilder().append(TreeConstructor).append(existAsLast ? "│   " : "    "), false, sb);
+                rightChild.printTree(new StringBuilder().append(TreeConstructor).append(existAsLast ? "│   " : "    "), false, sb);
             }
             sb.append(TreeConstructor).append(existAsLast ? "└── " : "┌── ").append(Integer.toString(value)).append("\n");
             if(leftChild!=null) {
-                leftChild.toString(new StringBuilder().append(TreeConstructor).append(existAsLast ? "    " : "│   "), true, sb);
+                leftChild.printTree(new StringBuilder().append(TreeConstructor).append(existAsLast ? "    " : "│   "), true, sb);
             }
             return sb;
         }
