@@ -18,12 +18,14 @@ public class BSTInsertion {
         printInsertMenu();
         int insertionInput = getInsertionInput();
 
+        // Check if root node is null
         if (bst.root == null) {
             bst.root = new BSTTree.BSTNode(insertionInput);
         } else {
             BSTTree.BSTNode currentNode = bst.root;
             BSTTree.BSTNode parentNode;
 
+            // Checks if the value is less than, or greater than or equal to the selected node
             while (true) {
                 parentNode = currentNode;
 
