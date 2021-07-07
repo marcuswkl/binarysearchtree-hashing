@@ -34,15 +34,16 @@ public class BinarySearchTree {
 
         switch (intInput) {
             case 0:
+                System.out.println("Thank you for using our Binary Search Tree.");
                 System.exit(0);
                 break;
             case 1:
                 bstInsertion.insert(bst);
-                System.out.println(bst.root.toString());
+                System.out.println(bst.root.printTree());
                 break;
             case 2:
                 bstDeletion.delete(bst);
-                System.out.println(bst.root.toString());
+                System.out.println(bst.root.printTree());
                 break;
             case 3:
                 bstTraversal.getTraversal(bst);

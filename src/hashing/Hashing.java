@@ -1,14 +1,10 @@
 package hashing;
 
-import binarysearchtree.BSTDeletion;
-import binarysearchtree.BSTInsertion;
-import binarysearchtree.BSTTraversal;
-
 import java.util.Scanner;
 
 public class Hashing {
     public static void main(String[] args) {
-        HashingModel hashingModel = new HashingModel(7);
+        HashingModel hashingModel = new HashingModel(7); // Set table size here
 
         do {
             printMainMenu();
@@ -38,6 +34,7 @@ public class Hashing {
 
         switch (intInput) {
             case 0:
+                System.out.println("Thank you for using our program to create a hash table.");
                 System.exit(0);
                 break;
             case 1:

@@ -16,6 +16,7 @@ public class HashingSearch {
     }
 
     public int findInput(HashingModel hashingModel, int searchInput) {
+        // To match the value that the user wants to search with the data in the hash table
         int arrayIndex = searchInput % hashingModel.hashTable.length;
         while (hashingModel.hashTable[arrayIndex] != -1) {
             if (hashingModel.hashTable[arrayIndex] == searchInput) {

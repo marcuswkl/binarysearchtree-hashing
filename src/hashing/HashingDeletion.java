@@ -7,6 +7,7 @@ public class HashingDeletion {
     public void delete(HashingModel hashingModel){
         int deleteKey = getDeletionInput();
         boolean exists = checkIfExist(hashingModel,deleteKey);
+        // check the existence of the key to be deleted by the user in the hash table
         if(exists){
             performDeletion(hashingModel,deleteKey);
         } else {
@@ -32,7 +33,7 @@ public class HashingDeletion {
     public void performDeletion(HashingModel hashingModel, int deleteKey){
         for (int i=0; i<hashingModel.hashTable.length; i++){
             if (hashingModel.hashTable[i] == deleteKey){
-                hashingModel.hashTable[i] = -1;
+                hashingModel.hashTable[i] = -1;     // -1 is used to replace null value
                 System.out.println(deleteKey + " is deleted.");
             }
         }

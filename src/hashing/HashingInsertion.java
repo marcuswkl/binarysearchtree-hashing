@@ -5,10 +5,11 @@ import java.util.Scanner;
 public class HashingInsertion {
 
     public void printInsertMenu() {
-        System.out.println("Please input a list of 7 positive integers (0 to 99) separated by commas with a space.");
+        System.out.println("Please input a list of positive integers (0 to 99) separated by commas with a space.");
         System.out.println("For example: 26, 32, 19, 11, 35, 9");
     }
 
+    // Convert user input string into integer array
     public int[] getInsertionInput() {
         Scanner keyboardInput = new Scanner(System.in);
         String stringInput = keyboardInput.nextLine();
@@ -40,7 +41,7 @@ public class HashingInsertion {
         int[] insertionInput = getInsertionInput();
         switch (selectCollisionMethod()) {
             case 1:
-                openAddressing(hashingModel, insertionInput);
+                linearProbing(hashingModel, insertionInput);
                 break;
             case 2:
                 quadraticProbing(hashingModel, insertionInput);
@@ -54,7 +55,7 @@ public class HashingInsertion {
         }
     }
 
-    public void openAddressing(HashingModel hashingModel, int[] insertionInput) {
+    public void linearProbing(HashingModel hashingModel, int[] insertionInput) {
         System.out.println("Open Addressing (Linear Probing)");
         int index;
         for (int key : insertionInput) {
@@ -82,10 +83,11 @@ public class HashingInsertion {
             } else {
                 System.out.println("Collision occurs when inserting " + key + " into " + index + ".");
                 for (int i = 0; i < hashingModel.tableSize; i++) {
-                    int t = (index + i * i) % hashingModel.tableSize;
+                    // Calculate the new index with quadratic number addition
+                    int newIndex = (index + i * i) % hashingModel.tableSize;
 
-                    if (hashingModel.hashTable[t] == -1) {
-                        hashingModel.hashTable[t] = key;
+                    if (hashingModel.hashTable[newIndex] == -1) {
+                        hashingModel.hashTable[newIndex] = key;
                         break;
                     }
                 }
@@ -98,6 +100,7 @@ public class HashingInsertion {
         int index;
         for (int key : insertionInput) {
             index = hashFunction(key, hashingModel.tableSize);
+            // Calculate step size
             int stepSize = doubleHashFunction(key);
 
             while (hashingModel.hashTable[index] != -1) {
@@ -115,6 +118,7 @@ public class HashingInsertion {
         return key % tableSize;
     }
 
+    // Constant should be prime number smaller than table size
     public int doubleHashFunction(int key) {
         return 5 - (key % 5);
     }

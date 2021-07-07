@@ -1,249 +1,48 @@
 package binarysearchtree;
-
 import java.util.Scanner;
-
-
 public class BSTDeletion {
 
     public int getDeletionInput() {
         System.out.println("Please input the integer you want to delete.");
-        System.out.println("Note: You can only delete one integer at a time.");
+        System.out.println("Note 1: You can only delete one integer at a time.");
+        System.out.println("Note 2: The integer must exist in the current BST.");
         Scanner keyboardInput = new Scanner(System.in);
         return keyboardInput.nextInt();
     }
 
     public void delete(BSTTree bst) {
         int deletionInput = getDeletionInput();
-        //(deletionInput, bst);
         performDeletion(bst.root, deletionInput);
     }
 
-    /*public boolean performDeletion(int deletionInput, BSTTree bst) {
-        BSTTree.BSTNode currentNode = bst.root;
-        BSTTree.BSTNode parentNode = bst.root;
-
-        boolean existAsLeftChild = true;
-
-        while (currentNode.value != deletionInput) {
-            parentNode = currentNode;
-            if (deletionInput < currentNode.value) {
-                existAsLeftChild = true;
-                currentNode = currentNode.leftChild;
-            } else {
-                existAsLeftChild = false;
-                currentNode = currentNode.rightChild;
-            }
-            if (currentNode == null){
-                return false;
-            }
+    BSTTree.BSTNode performDeletion(BSTTree.BSTNode currentNode, int deletionInput) {
+        // recursive function to find out the position of the current node
+        if (deletionInput < currentNode.value)
+            currentNode.leftChild = performDeletion(currentNode.leftChild, deletionInput);
+        else if (deletionInput > currentNode.value)
+            currentNode.rightChild = performDeletion(currentNode.rightChild, deletionInput);
+        else {
+            // First Case: Current Node is leaf node
+            // Second Case: Current Node has a left Child
+            // Third Case: Current Node has a right Child
+            if (currentNode.leftChild == null)
+                return currentNode.rightChild;
+            else if (currentNode.rightChild == null)
+                return currentNode.leftChild;
+            // Fourth Case: Current Node has both left and right Child
+            currentNode.value = smallestValue(currentNode.rightChild);
+            currentNode.rightChild = performDeletion(currentNode.rightChild, currentNode.value);
         }
-
-        if (currentNode.leftChild == null && currentNode.rightChild == null) {
-            if (currentNode == bst.root) {
-                bst.root = null;
-            } else if (existAsLeftChild) {
-                parentNode.leftChild = null;
-            } else {
-                parentNode.rightChild = null;
-            }
-        } else if (currentNode.rightChild == null) {
-            if (currentNode == bst.root) {
-                bst.root = currentNode.leftChild;
-            } else if (existAsLeftChild) {
-                parentNode.leftChild = currentNode.leftChild;
-            } else {
-                parentNode.rightChild = currentNode.leftChild;
-            }
-        } else if (currentNode.leftChild == null) {
-            if (currentNode == bst.root) {
-                bst.root = currentNode.rightChild;
-            } else if (existAsLeftChild) {
-                parentNode.leftChild = currentNode.rightChild;
-            } else {
-                parentNode.rightChild = currentNode.rightChild;
-            }
-        } else {
-            BSTTree.BSTNode replacement = getReplacementNode(currentNode);
-            if (currentNode == bst.root) {
-                bst.root = replacement;
-            } else if (existAsLeftChild) {
-                parentNode.leftChild = replacement;
-            } else {
-                parentNode.rightChild = replacement;
-                replacement.leftChild = currentNode.leftChild;
-            }
-
-        }
-        return true;
+        return currentNode;
     }
 
-    public BSTTree.BSTNode getReplacementNode(BSTTree.BSTNode replacement) {
-        BSTTree.BSTNode replacementParentNode = replacement;
-        BSTTree.BSTNode replacementValue = replacement;
-        BSTTree.BSTNode currentNode = replacement.rightChild;
-        while (currentNode != null) {
-            replacementParentNode = replacementValue;
-            replacementValue = currentNode;
+    public int smallestValue(BSTTree.BSTNode currentNode) {
+        // To search the largest value on the right subtree of the current node
+        int smallestData = currentNode.value;
+        while (currentNode.leftChild != null) {
+            smallestData = currentNode.leftChild.value;
             currentNode = currentNode.leftChild;
         }
-        if (replacementValue != replacement.rightChild) {
-            replacementParentNode.leftChild = replacementValue.rightChild;
-            replacementValue.rightChild = replacement.rightChild;
-        }
-        return replacement;
-    }*/
-
-    BSTTree.BSTNode performDeletion(BSTTree.BSTNode root, int key)
-    {
-        /* Base Case: If the tree is empty */
-        if (root == null)
-            return root;
-
-        /* Otherwise, recur down the tree */
-        if (key < root.value)
-            root.leftChild = performDeletion(root.leftChild, key);
-        else if (key > root.value)
-            root.rightChild = performDeletion(root.rightChild, key);
-
-            // if key is same as root's
-            // key, then This is the
-            // node to be deleted
-        else {
-            // node with only one child or no child
-            if (root.leftChild == null)
-                return root.rightChild;
-            else if (root.rightChild == null)
-                return root.leftChild;
-
-            // node with two children: Get the inorder
-            // successor (smallest in the right subtree)
-            root.value = minValue(root.rightChild);
-
-            // Delete the inorder successor
-            root.rightChild = performDeletion(root.rightChild, root.value);
-        }
-
-        return root;
-    }
-
-    public int minValue(BSTTree.BSTNode root)
-    {
-        int minv = root.value;
-        while (root.leftChild != null)
-        {
-            minv = root.leftChild.value;
-            root = root.leftChild;
-        }
-        return minv;
-    }
-
-
-
-
-}
-
- /*      if (deletionInput == bst.root.value){
-            performDeletion(bst.root);
-        }
-        else if (deletionInput > bst.root.value){
-                if (deletionInput == bst.root.rightChild.value) {
-                    performDeletion(bst.root.rightChild);
-                    if(bst.root.rightChild==null){
-                        System.out.println("The node is deleted");
-                    } else {
-                        System.out.println("The node is not deleted");
-                    }
-                } else if (deletionInput >= bst.root.rightChild.value) {
-                    performDeletion(bst.root.rightChild.rightChild);
-                } else if (deletionInput < bst.root.leftChild.value) {
-                    performDeletion(bst.root.rightChild.leftChild);
-                } else {
-                    System.out.println("The node is not deleted");
-                }
-            } else if (deletionInput >= bst.root.rightChild.value) {
-                performDeletion(bst.root.rightChild.rightChild);
-            } else if (deletionInput < bst.root.leftChild.value) {
-                performDeletion(bst.root.rightChild.leftChild);
-            } else {
-                System.out.println("The number is not found in the Binary Search Tree");
-            }
-        } else {
-            if (deletionInput == bst.root.leftChild.value) {
-                performDeletion(bst.root.leftChild);
-            } else if (deletionInput > bst.root.leftChild.value) {
-                performDeletion(bst.root.leftChild.rightChild);
-            } else if (deletionInput < bst.root.leftChild.value) {
-                performDeletion(bst.root.leftChild.leftChild);
-            } else {
-                System.out.println("The number is not found in the Binary Search Tree");
-            }
-        }
-
-    }
-
-    public BSTTree.BSTNode smallestNumber(BSTTree.BSTNode node) {
-        if (node.leftChild == null) {
-            return node;
-        } else {
-            return smallestNumber(node.leftChild);
-        }
-    }
-
-    public BSTTree.BSTNode performDeletion(BSTTree.BSTNode node) {
-        //first case: no child node/deleting leaf node
-        if (node.leftChild == null && node.rightChild == null) {
-            System.out.println("This is a leaf node.");
-            //node = null;
-            return null;
-        }
-
-        //second case: one left child node
-        else if (node.leftChild != null && node.rightChild == null) {
-            System.out.println("This node has one left child.");
-            System.out.println("The node is replaced by its left child.");
-            node.value = node.leftChild.value;
-            node.leftChild = null;
-        }
-
-        //third case: one right child node
-        else if (node.rightChild != null && node.leftChild == null) {
-            System.out.println("This node has one right child.");
-            System.out.println("The node is replaced by its right child.");
-            node.value = node.rightChild.value;
-            node.rightChild = null;
-        }
-
-        //third case: two child nodes // (node.leftChild != null && node.rightChild != null)
-        else {
-            System.out.println("The node is replaced.");
-            BSTTree.BSTNode smallestRight = smallestNumber(node.leftChild);
-            node.value = smallestRight.value;
-            node.leftChild = null;
-        }
-        return node;
+        return smallestData;
     }
 }
-
-
-    public boolean inputExist(BSTTree.BSTNode node, int deletionInput) {
-        if(node == null) {
-            return false;
-        }
-        if(node.value == deletionInput){
-            return true;
-        }
-
-        boolean checkLeft = inputExist(node.leftChild, deletionInput);
-        if(checkLeft) return true;
-
-        boolean checkRight = inputExist(node.rightChild, deletionInput);
-
-        return checkRight;
-        if (inputExist(new BSTTree.BSTNode(deletionInput), deletionInput)){
-            performDeletion(new BSTTree.BSTNode(deletionInput), deletionInput);
-            System.out.println("Thank you for entering a valid value. We will proceed with the deletion process.");
-        }
-        else {
-            System.out.println("The number is not found in the Binary Search Tree.");
-        }
-    }*/
