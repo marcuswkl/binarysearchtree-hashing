@@ -8,6 +8,8 @@ public class BSTTraversal {
         System.out.println("1. Pre-order traversal");
         System.out.println("2. In-order traversal");
         System.out.println("3. Post-order traversal");
+        System.out.println("Please input an integer (1 to 3).");
+
     }
 
     public int getTraversalOption(){

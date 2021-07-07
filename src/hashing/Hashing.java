@@ -38,6 +38,7 @@ public class Hashing {
 
         switch (intInput) {
             case 0:
+                System.out.println("Thank you for using our program to create a hash table.");
                 System.exit(0);
                 break;
             case 1:
