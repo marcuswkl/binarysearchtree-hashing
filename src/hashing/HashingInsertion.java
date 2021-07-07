@@ -40,7 +40,7 @@ public class HashingInsertion {
         int[] insertionInput = getInsertionInput();
         switch (selectCollisionMethod()) {
             case 1:
-                openAddressing(hashingModel, insertionInput);
+                linearProbing(hashingModel, insertionInput);
                 break;
             case 2:
                 quadraticProbing(hashingModel, insertionInput);
@@ -54,7 +54,7 @@ public class HashingInsertion {
         }
     }
 
-    public void openAddressing(HashingModel hashingModel, int[] insertionInput) {
+    public void linearProbing(HashingModel hashingModel, int[] insertionInput) {
         System.out.println("Open Addressing (Linear Probing)");
         int index;
         for (int key : insertionInput) {
