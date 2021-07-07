@@ -34,6 +34,7 @@ public class BinarySearchTree {
 
         switch (intInput) {
             case 0:
+                System.out.println("Thank you for using our Binary Search Tree.");
                 System.exit(0);
                 break;
             case 1:
