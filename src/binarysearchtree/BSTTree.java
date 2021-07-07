@@ -17,13 +17,13 @@ public class BSTTree {
             return this.toString(new StringBuilder(), true, new StringBuilder()).toString();
         }
 
-        public StringBuilder toString(StringBuilder prefix, boolean isTail, StringBuilder sb) {
+        public StringBuilder toString(StringBuilder TreeConstructor, boolean existAsLast, StringBuilder sb) {
             if(rightChild!=null) {
-                rightChild.toString(new StringBuilder().append(prefix).append(isTail ? "│   " : "    "), false, sb);
+                rightChild.toString(new StringBuilder().append(TreeConstructor).append(existAsLast ? "│   " : "    "), false, sb);
             }
-            sb.append(prefix).append(isTail ? "└── " : "┌── ").append(Integer.toString(value)).append("\n");
+            sb.append(TreeConstructor).append(existAsLast ? "└── " : "┌── ").append(Integer.toString(value)).append("\n");
             if(leftChild!=null) {
-                leftChild.toString(new StringBuilder().append(prefix).append(isTail ? "    " : "│   "), true, sb);
+                leftChild.toString(new StringBuilder().append(TreeConstructor).append(existAsLast ? "    " : "│   "), true, sb);
             }
             return sb;
         }
