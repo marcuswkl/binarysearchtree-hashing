@@ -1,9 +1,5 @@
 package hashing;
 
-import binarysearchtree.BSTDeletion;
-import binarysearchtree.BSTInsertion;
-import binarysearchtree.BSTTraversal;
-
 import java.util.Scanner;
 
 public class Hashing {
