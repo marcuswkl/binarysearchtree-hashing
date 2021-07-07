@@ -82,10 +82,10 @@ public class HashingInsertion {
             } else {
                 System.out.println("Collision occurs when inserting " + key + " into " + index + ".");
                 for (int i = 0; i < hashingModel.tableSize; i++) {
-                    int t = (index + i * i) % hashingModel.tableSize;
+                    int newIndex = (index + i * i) % hashingModel.tableSize;
 
-                    if (hashingModel.hashTable[t] == -1) {
-                        hashingModel.hashTable[t] = key;
+                    if (hashingModel.hashTable[newIndex] == -1) {
+                        hashingModel.hashTable[newIndex] = key;
                         break;
                     }
                 }
