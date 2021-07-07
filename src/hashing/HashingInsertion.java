@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class HashingInsertion {
 
     public void printInsertMenu() {
-        System.out.println("Please input a list of 10 positive integers (0 to 99) separated by commas with a space.");
+        System.out.println("Please input a list of 7 positive integers (0 to 99) separated by commas with a space.");
         System.out.println("For example: 26, 32, 19, 11, 35, 9");
     }
 
