@@ -40,27 +40,27 @@ public class BSTTraversal {
         if (node == null) {
             return;
         }
-        System.out.print(node.value + " ");
-        printPreOrder(node.leftChild);
-        printPreOrder(node.rightChild);
+        System.out.print(node.value + " "); // print the node value
+        printPreOrder(node.leftChild); // recur on the left child
+        printPreOrder(node.rightChild); // recur on the right child
     }
 
     public void printInOrder(BSTTree.BSTNode node){
         if (node == null) {
             return;
         }
-        printInOrder(node.leftChild);
-        System.out.print(node.value + " ");
-        printInOrder(node.rightChild);
+        printInOrder(node.leftChild); // recur on the left child
+        System.out.print(node.value + " "); // print the node value
+        printInOrder(node.rightChild); // recur on the right child
     }
 
     public void printPostOrder(BSTTree.BSTNode node){
         if (node == null) {
             return;
         }
-        printPostOrder(node.leftChild);
-        printPostOrder(node.rightChild);
-        System.out.print(node.value + " ");
+        printPostOrder(node.leftChild); // recur on the left child
+        printPostOrder(node.rightChild); // recur on the right child
+        System.out.print(node.value + " "); // print the node value
     }
 
     public void getTraversal(BSTTree bst){
