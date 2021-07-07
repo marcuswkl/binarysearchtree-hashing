@@ -4,7 +4,8 @@ public class BSTDeletion {
 
     public int getDeletionInput() {
         System.out.println("Please input the integer you want to delete.");
-        System.out.println("Note: You can only delete one integer at a time.");
+        System.out.println("Note 1: You can only delete one integer at a time.");
+        System.out.println("Note 2: The integer must exist in the current BST.");
         Scanner keyboardInput = new Scanner(System.in);
         return keyboardInput.nextInt();
     }
