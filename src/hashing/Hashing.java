@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Hashing {
     public static void main(String[] args) {
-        HashingModel hashingModel = new HashingModel(7);
+        HashingModel hashingModel = new HashingModel(7); // Set table size here
 
         do {
             printMainMenu();
