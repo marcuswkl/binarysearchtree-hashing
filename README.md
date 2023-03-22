@@ -4,7 +4,7 @@ You are required to implement a group project with appropriate data structures a
 
 The marks will be based on the use of appropriate data structures, general (support multiple data types), the accuracy of algorithms, and support the essential operations involved in it. For example, if you choose to implement a simulation for a Red-Black tree, it should support the insert (add node) and delete (remove node) operations.
 
-## Problems List
+### Problems List
 - Shortest pathfinding
 - Hashing
 - Binary Search Tree
